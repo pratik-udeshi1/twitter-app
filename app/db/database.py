@@ -2,12 +2,12 @@ from databases import Database
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-DATABASE_URL = "postgresql://postgres:admin@localhost:5432/twitter-app"
+from app.core.config import settings
 
-database = Database(DATABASE_URL)
+database = Database(settings.database_url)
 Base = declarative_base()
 
-engine = create_engine(DATABASE_URL)
+engine = create_engine(settings.database_url)
 Base.metadata.bind = engine
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
